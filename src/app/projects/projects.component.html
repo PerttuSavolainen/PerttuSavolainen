@@ -1,0 +1,18 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-card mdl-shadow--4dp" *ngFor="let item of projectItems">
+    <div class="mdl-card__media">
+      <img [src]="item.image" alt="" style="max-width: 100%">
+    </div>
+    <div class="mdl-card__title">
+      <h3>
+        {{ item.title }}
+      </h3>
+    </div>
+    <div class="mdl-card__supporting-text mdl-card--border">
+      {{ item.info }}
+      <a *ngIf="item.link != null" href="{{item.link}}" target="_blank" style="float: right;">
+        <i class="material-icons mdl-list__item-icon">launch</i>
+      </a>
+    </div>
+  </div>
+</div>

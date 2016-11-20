@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #ec6a6a;
+  color: #fff;
+}
+
+h1 {
+  letter-spacing: 0;
+}
+
+.loader-section {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.loader-section .loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 600px;
+  padding: 0 1rem;
+}
+
+.mdl-progress {
+  width: 100%;
+}
+
+.mdl-card__title h3 {
+  margin: 0;
+}
+
+.mdl-card--border {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+}

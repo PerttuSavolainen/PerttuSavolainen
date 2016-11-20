@@ -1,0 +1,103 @@
+.text-hover, .front .logo-wrapper .logo, .front .logo-wrapper h1 span:not(.name) {
+  transition: all 0.1s ease-out;
+  transform-origin: bottom; }
+
+.text-hover:hover, .front .logo-wrapper .logo:hover, .front .logo-wrapper h1 span:hover:not(.name) {
+  transform: scale(1.25);
+  text-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.15), 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25), 0 0.05rem 0.4rem rgba(0, 0, 0, 0.15); }
+
+.pause-animation {
+  animation-play-state: paused; }
+
+
+ .logo-mini {
+  width: 100%;
+  max-width: 7rem;
+  float: left;
+  margin: 0 1rem 0 0; }
+ .sections-wrapper, .front {
+  min-height: 100vh;
+  width: 100%;
+  position: relative; }
+
+ .front .logo-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.25s;
+  z-index: 5; }
+ .front .logo-wrapper .logo {
+  max-width: 10rem;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 1rem; }
+ .front .logo-wrapper h1 {
+  text-align: right;
+  font-size: 7rem;
+  font-weight: 100;
+  width: auto;
+  line-height: 1; }
+ .front .logo-wrapper h1:before {
+  content: "<";
+  position: absolute;
+  bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+  right: 100%; }
+ .front .logo-wrapper h1:after {
+  content: ">";
+  position: absolute;
+  bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+  left: 100%; }
+ .front .logo-wrapper h1 .name {
+  display: block;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  transform-origin: bottom;
+  position: absolute;
+   right: 0;
+ }
+ .front .logo-wrapper h1 span {
+  cursor: default; }
+ .front .logo-wrapper h1 span:not(.name) {
+  display: inline-block; }
+ .front .zoomFade {
+  transform: translate(-50%, -50%) scale(4);
+  opacity: 0; }
+
+
+.navi {
+  text-align: center;
+}
+
+.navi a {
+  display: inline-block;
+  padding: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navi a.active {
+  font-weight: 700;
+}
+
+.navi .separator-right {
+  border-right: rgba(255,255,255,0.75) solid 1px;
+  margin-right: 1rem;
+  padding-right: 2rem;
+
+}
+
+.navi .separator-left {
+  border-left: rgba(255,255,255,0.75) solid 1px;
+  margin-left: 1rem;
+  padding-left: 2rem;
+
+}
+
+.content {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem;
+}

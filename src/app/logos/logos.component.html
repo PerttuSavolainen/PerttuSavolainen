@@ -1,0 +1,15 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--4dp" *ngFor="let item of logoItems">
+    <div class="mdl-card__media">
+      <img [style.padding]="item.image.indexOf('.png') != -1 ? '2rem' : 0" [src]="item.image" alt="" style="max-width: 100%;">
+    </div>
+    <div class="mdl-card__title">
+      <h3>
+        {{ item.title }}
+      </h3>
+    </div>
+    <div class="mdl-card__supporting-text mdl-card--border">
+      {{ item.info }}
+    </div>
+  </div>
+</div>

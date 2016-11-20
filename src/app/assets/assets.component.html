@@ -1,0 +1,17 @@
+<h3 style="text-align: center">Just some random assets made with Illustrator, Photoshop, JavaScript, HTML, or whatever... </h3>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--4dp" *ngFor="let item of assetItems">
+    <div class="mdl-card__media">
+      <img [src]="item.image" alt="" style="max-width: 100%;">
+    </div>
+    <div class="mdl-card__title">
+      <h3>
+        {{ item.title }}
+      </h3>
+    </div>
+    <div class="mdl-card__supporting-text mdl-card--border">
+      {{ item.info }}
+    </div>
+  </div>
+</div>

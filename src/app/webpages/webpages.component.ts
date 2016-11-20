@@ -17,7 +17,7 @@ export class WebpagesComponent implements OnInit {
       {
         title: "A gaming event",
         info: "Our cooperative society organized a gaming event.",
-        image: "assets/powerlan.png",
+        image: "assets/powerlan.PNG",
         link: "http://powerlan.fi/"
       },
       {

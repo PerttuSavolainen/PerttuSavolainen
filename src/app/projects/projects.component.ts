@@ -23,7 +23,7 @@ export class ProjectsComponent implements OnInit {
       {
         title: "Pics",
         info: "Second semester's School project. Fictional image service, where users can send and comment images. Project introduced me to a Laravel framework.",
-        image: "assets/pics.png"
+        image: "assets/pics.PNG"
       },
       {
         title: "Lemon Ways - TED",

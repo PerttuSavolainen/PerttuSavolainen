@@ -16,9 +16,14 @@
   float: left;
   margin: 0 1rem 0 0; }
  .sections-wrapper, .front {
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100%;
-  position: relative; }
+  position: relative;
+   background: #ea6161;
+   color: #fff;
+   text-align: center;
+   margin-bottom: 3rem;
+ }
 
  .front .logo-wrapper {
   position: absolute;
@@ -34,7 +39,7 @@
   margin-bottom: 1rem; }
  .front .logo-wrapper h1 {
   text-align: right;
-  font-size: 7rem;
+  font-size: 2.5rem;
   font-weight: 100;
   width: auto;
   line-height: 1; }
@@ -100,4 +105,34 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: 1rem;
+}
+
+.scroll-down-btn {
+  position: absolute;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  /*animation: btnAnim 5s ease-in-out infinite;*/
+}
+
+@keyframes btnAnim {
+  0% {
+    transform: translate(-50%, 50%);
+  }
+  90% {
+    transform: translate(-50%, 45%);
+  }
+  95% {
+    transform: translate(-50%, 55%);
+  }
+}
+
+@media(min-width: 500px){
+  .front .logo-wrapper h1 {
+    font-size: 4rem;
+  }
+}
+@media(min-width: 800px){
+  .front .logo-wrapper h1 {
+    font-size: 7rem;
+  }
 }

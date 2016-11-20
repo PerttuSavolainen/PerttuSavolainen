@@ -1,27 +1,32 @@
-<section class="front">
-  <div class="logo-wrapper">
-    <object class="logo" type="image/svg+xml" data="assets/logo.svg"></object>
-    <h1><span>P</span><span>o</span><span>r</span><span>t</span><span>f</span><span>o</span><span>l</span><span>i</span><span>o</span><span class="name">Perttu Savolainen</span>    </h1>
-  </div>
-</section>
+<div id="site">
+  <section class="front">
+    <div class="logo-wrapper">
+      <object class="logo" type="image/svg+xml" data="assets/logo.svg"></object>
+      <h1><span>P</span><span>o</span><span>r</span><span>t</span><span>f</span><span>o</span><span>l</span><span>i</span><span>o</span><span class="name">Perttu Savolainen</span>    </h1>
+    </div>
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored scroll-down-btn" (click)="scrollDown($event)">
+      <i class="material-icons">expand_more</i>
+    </button>
+  </section>
 
-<nav class="navi content">
-  <a routerLink="" routerLinkActive="active" class="separator-right">Who?</a>
-  <a routerLink="/projects" routerLinkActive="active">Projects</a>
-  <a routerLink="/webpages" routerLinkActive="active">Web pages</a>
-  <a routerLink="/logos" routerLinkActive="active">Logos</a>
-  <a routerLink="/assets" routerLinkActive="active">Assets</a>
-  <!-- Right aligned menu below button -->
-  <!--<button id="pspf-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-    <i class="material-icons">more_vert</i>
-  </button>
-  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="pspf-menu-lower-right">
-    <li class="mdl-menu__item">Some Action</li>
-    <li class="mdl-menu__item">Another Action</li>
-    <li disabled class="mdl-menu__item">Disabled Action</li>
-    <li class="mdl-menu__item">Yet Another Action</li>
-  </ul>-->
-</nav>
-<section class="content">
-  <router-outlet></router-outlet>
-</section>
+  <nav id="navi" class="navi content">
+    <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="separator-right">Who?</a>
+    <a routerLink="/projects" routerLinkActive="active">Projects</a>
+    <a routerLink="/webpages" routerLinkActive="active">Web pages</a>
+    <a routerLink="/logos" routerLinkActive="active">Logos</a>
+    <a routerLink="/assets" routerLinkActive="active">Assets</a>
+    <!-- Right aligned menu below button -->
+    <!--<button id="pspf-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+      <i class="material-icons">more_vert</i>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="pspf-menu-lower-right">
+      <li class="mdl-menu__item">Some Action</li>
+      <li class="mdl-menu__item">Another Action</li>
+      <li disabled class="mdl-menu__item">Disabled Action</li>
+      <li class="mdl-menu__item">Yet Another Action</li>
+    </ul>-->
+  </nav>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+</div>

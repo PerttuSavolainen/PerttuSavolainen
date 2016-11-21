@@ -16,7 +16,8 @@
   float: left;
   margin: 0 1rem 0 0; }
  .sections-wrapper, .front {
-  min-height: 90vh;
+  min-height: 600px;
+  height: 90vh;
   width: 100%;
   position: relative;
    background: #ea6161;
@@ -124,6 +125,22 @@
   95% {
     transform: translate(-50%, 55%);
   }
+}
+
+.footer {
+  background: #ea6161;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+}
+
+.footer a {
+  margin: 0 1rem;
+}
+
+.footer a img {
+  max-width: 40px;
+  max-height: 40px;
 }
 
 @media(min-width: 500px){

@@ -2,7 +2,9 @@
   transition: all 0.1s ease-out;
   transform-origin: bottom; }
 
-.text-hover:hover, .front .logo-wrapper .logo:hover, .front .logo-wrapper h1 span:hover:not(.name) {
+.text-hover:hover, .front .logo-wrapper .logo:hover,
+.front .logo-wrapper h1 span:hover:not(.name),
+.front .logo-wrapper h1 span.manual-hover:not(.name) {
   transform: scale(1.25);
   text-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.15), 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25), 0 0.05rem 0.4rem rgba(0, 0, 0, 0.15); }
 

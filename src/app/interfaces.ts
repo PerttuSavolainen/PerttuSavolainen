@@ -10,4 +10,5 @@ export interface portfolioItem {
   info: string;
   link?: string;
   image?: string;
+  canvas?: Object;
 }

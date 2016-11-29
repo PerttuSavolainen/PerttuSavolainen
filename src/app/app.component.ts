@@ -8,19 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   scrollTimeout: any;
+  iconInterval: any;
+  iconWrapper: Element;
+  frontSection: Element;
 
-  constructor(){
-    window.addEventListener('scroll', this.scrollEvent);
-
-
-
-  }
+  constructor(){}
 
   ngOnInit(){
+    this.iconWrapper = document.querySelector("div#front-icons");
     // place static height to front section,
     // it prevents content jumping on mobile devices
-    let section = document.querySelector("section.front");
-    section.setAttribute("style", "height: " + section.clientHeight + "px");
+    this.frontSection = document.querySelector("section.front");
+    this.frontSection.setAttribute("style", "height: " + this.frontSection.clientHeight + "px");
+
+    window.addEventListener('scroll', this.scrollEvent);
 
     // animate characters on at a time
     let logoSpans = document.querySelectorAll(".logo-wrapper h1 span:not(.name)");
@@ -30,19 +31,30 @@ export class AppComponent implements OnInit {
           logoSpans[i].classList.add("manual-hover");
           setTimeout(() => {
             logoSpans[i].classList.remove("manual-hover");
-          }, (i+1)*50);
-        }, i*50);
+          }, (i+1)*75);
+        }, i*75);
       }
+
+      // add icon animation for the header
+      this.iconAnimation();
+      this.addVisibilityChange();
+
     }, 2000);
 
   }
 
   scrollEvent(e: Event){
 
+    let getScrollAmount: Function = function(){
+      return (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
+    };
+
     clearTimeout(this.scrollTimeout);
     this.scrollTimeout = setTimeout(()=>{
-
-    }, 100);
+      //console.log(getScrollAmount());
+      if (typeof this.iconWrapper === "undefined") this.iconWrapper = document.querySelector("div#front-icons");
+      this.iconWrapper.setAttribute("style", "transform: translateY(" + getScrollAmount()/15 + "%)");
+    }, 5);
 
   }
 
@@ -71,5 +83,97 @@ export class AppComponent implements OnInit {
     }, 10);
   }
 
+  iconAnimation(){
+      this.iconInterval = window.setInterval(() => { this.createIcon(this.iconWrapper) }, 500);
+  }
+
+  /*
+   * @param elem where you want icon to be created
+   */
+  createIcon(elem){
+
+    // icons array
+    let icons: Array<string> = [
+      'fa-database',
+      'fa-cube',
+      'fa-commenting',
+      'fa-github',
+      'fa-html5',
+      'fa-css3',
+      'fa-wordpress',
+      'fa-folder-open',
+      'fa-tablet'
+    ];
+
+    let checkAnimationEndEvent: Function = function() {
+      let a;
+      let elem = document.createElement("fakeelement");
+      let animations = {
+        'animation': 'animationend',
+        'webkitAnimation': 'webkitAnimationEnd'
+      };
+
+      for (a in animations) {
+        if (elem.style[a] !== undefined) {
+          return animations[a];
+        }
+      }
+
+      return null;
+
+    };
+
+    let deleteElem: Function = function(elem) {
+      elem.parentNode.removeChild(elem);
+    };
+
+    let curIcon = icons[Math.round(Math.random()*(icons.length-1))];
+    let iconNumber = Math.round(Math.random()*8+1);
+    // create new element and add needed classes etc
+    let newIcon = document.createElement("i");
+    newIcon.classList.add("rand-icon");
+    newIcon.classList.add("fa");
+    newIcon.classList.add(curIcon);
+    newIcon.classList.add("icon-size-" + iconNumber);
+    newIcon.style.left = Math.random()*100 + "%";
+    //newIcon.randAmount = Math.random();
+    elem.appendChild(newIcon);
+    //console.log("created");
+
+    let animEvent = checkAnimationEndEvent();
+
+    if (animEvent) {
+
+      newIcon.addEventListener(animEvent, function(){
+        deleteElem(newIcon);
+        //console.log("removed with animationend");
+      });
+
+    } else {
+
+      setTimeout(function(){
+        elem.removeChild(newIcon);
+        //console.log("removed with setTimeout");
+      }, 20000/iconNumber);
+
+    }
+
+  }
+
+  addVisibilityChange(){
+    // is tab active
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) {
+        document.title = "Activate me!";
+        window.clearInterval(this.iconInterval);
+      } else {
+        document.title = "Pspf";
+
+        this.iconInterval = window.setInterval(function(){
+          this.createIcon(this.iconWrapper);
+        }, 250);
+      }
+    });
+  }
 
 }

@@ -47,3 +47,16 @@ h1 {
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, .1);
 }
+
+/* icon stuff */
+.rand-icon{position:absolute;bottom:-50%}
+@keyframes a{0%{bottom:10%;transform:translateY(50vh)}to{transform:translateY(-150vh)}}
+.icon-size-1{color:#f08e8e;font-size:1.25rem;animation:a 20s linear 1s;-webkit-filter:blur(.3rem);-moz-filter:blur(.3rem);filter:blur(.3rem);z-index:1}
+.icon-size-2{color:#f08a8a;font-size:2.5rem;animation:a 10s linear 1s;-webkit-filter:blur(.225rem);-moz-filter:blur(.225rem);filter:blur(.225rem);z-index:2}
+.icon-size-3{color:#ef8585;font-size:3.75rem;animation:a 6.66667s linear 1s;-webkit-filter:blur(.15rem);-moz-filter:blur(.15rem);filter:blur(.15rem);z-index:3}
+.icon-size-4{color:#ef8181;font-size:5rem;animation:a 5s linear 1s;-webkit-filter:blur(.075rem);-moz-filter:blur(.075rem);filter:blur(.075rem);z-index:4}
+.icon-size-5{color:#ee7c7c;font-size:6.25rem;animation:a 4s linear 1s;-webkit-filter:blur(0);-moz-filter:blur(0);filter:blur(0);z-index:5}
+.icon-size-6{color:#ed7878;font-size:7.5rem;animation:a 3.33333s linear 1s;-webkit-filter:blur(.075rem);-moz-filter:blur(.075rem);filter:blur(.075rem);z-index:6}
+.icon-size-7{color:#ed7373;font-size:8.75rem;animation:a 2.85714s linear 1s;-webkit-filter:blur(.15rem);-moz-filter:blur(.15rem);filter:blur(.15rem);z-index:7}
+.icon-size-8{color:#ec6f6f;font-size:10rem;animation:a 2.5s linear 1s;-webkit-filter:blur(.225rem);-moz-filter:blur(.225rem);filter:blur(.225rem);z-index:8}
+.icon-size-9{color:#ec6a6a;font-size:11.25rem;animation:a 2.22222s linear 1s;-webkit-filter:blur(.3rem);-moz-filter:blur(.3rem);filter:blur(.3rem);z-index:9}

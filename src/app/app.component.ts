@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
       // add icon animation for the header
       this.iconAnimation();
       this.addVisibilityChange();
+      this.addWindowWidthListener();
 
     }, 2000);
 
@@ -84,7 +85,12 @@ export class AppComponent implements OnInit {
   }
 
   iconAnimation(){
-      this.iconInterval = window.setInterval(() => { this.createIcon(this.iconWrapper) }, 500);
+
+      let widthRatio = window.innerWidth / 992;
+      console.log(widthRatio);
+
+      window.clearInterval(this.iconInterval);
+      this.iconInterval = window.setInterval(() => { this.createIcon(this.iconWrapper) }, ~~(500 / widthRatio));
   }
 
   /*
@@ -168,11 +174,14 @@ export class AppComponent implements OnInit {
         window.clearInterval(this.iconInterval);
       } else {
         document.title = "Pspf";
-
-        this.iconInterval = window.setInterval(function(){
-          this.createIcon(this.iconWrapper);
-        }, 250);
+        this.iconAnimation();
       }
+    });
+  }
+
+  addWindowWidthListener(){
+    window.addEventListener("resize", ()=>{
+      this.iconAnimation();
     });
   }
 

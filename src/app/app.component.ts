@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
     this.frontSection = document.querySelector("section.front");
     this.frontSection.setAttribute("style", "height: " + this.frontSection.clientHeight + "px");
 
-    window.addEventListener('scroll', this.scrollEvent);
+    // TODO sniff if user is using mobile device, otherwise apply scroll event
+    if (window.innerWidth >= 992) window.addEventListener('scroll', this.scrollEvent);
 
     // animate characters on at a time
     let logoSpans = document.querySelectorAll(".logo-wrapper h1 span:not(.name)");
@@ -31,8 +32,8 @@ export class AppComponent implements OnInit {
           logoSpans[i].classList.add("manual-hover");
           setTimeout(() => {
             logoSpans[i].classList.remove("manual-hover");
-          }, (i+1)*75);
-        }, i*75);
+          }, (i+1)*50);
+        }, i*100);
       }
 
       // add icon animation for the header

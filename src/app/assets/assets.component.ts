@@ -15,6 +15,11 @@ export class AssetsComponent implements OnInit {
   ngOnInit() {
     this.assetItems = [
       {
+        title: "Icon collage - lightbulb",
+        info: "Random svg with Adobe Illustrator.",
+        image: "assets/lightbulb.svg"
+      },
+      {
         title: "Streamgull background",
         info: "Ionic 2 project asset.",
         image: "assets/sg-bg-1280.jpg"

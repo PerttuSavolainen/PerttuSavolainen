@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {setTimeout} from "timers";
+//import * as d3 from "d3";
+//import {scaleLinear} from "d3-scale";
+
+declare var Snap: any;
 
 @Component({
   selector: 'app-root',
@@ -8,14 +13,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   scrollTimeout: any;
-  iconInterval: any;
-  iconWrapper: Element;
+ // iconWrapper: Element;
   frontSection: Element;
 
   constructor(){}
 
   ngOnInit(){
-    this.iconWrapper = document.querySelector("div#front-icons");
+    //this.iconWrapper = document.querySelector("div#front-icons");
     // place static height to front section,
     // it prevents content jumping on mobile devices
     this.frontSection = document.querySelector("section.front");
@@ -25,7 +29,7 @@ export class AppComponent implements OnInit {
     if (window.innerWidth >= 992) window.addEventListener('scroll', this.scrollEvent);
 
     // animate characters on at a time
-    let logoSpans = document.querySelectorAll(".logo-wrapper h1 span:not(.name)");
+    /*let logoSpans = document.querySelectorAll(".logo-wrapper h1 span:not(.name)");
     setTimeout(() => {
       for (let i=0; i<logoSpans.length; i++) {
         setTimeout(() => {
@@ -36,38 +40,65 @@ export class AppComponent implements OnInit {
         }, i*100);
       }
 
-      // add icon animation for the header
-      this.iconAnimation();
       this.addVisibilityChange();
-      this.addWindowWidthListener();
 
-    }, 2000);
+    }, 2000);*/
+
+    this.addVisibilityChange();
+
+    let s = Snap("#svgWrapper");
+    console.log(s);
+
+    // load svg dynamically
+    let l = Snap.load('assets/lightbulb.svg', (data) => {
+      //console.log(data);
+
+      let svgPaths = data.selectAll('path');
+      //console.log(svgPaths);
+      svgPaths.forEach( (el, index) => {
+
+        // bouncing box
+        let bbox = el.getBBox();
+
+        el.attr({
+          //opacity: 0.2,
+          fill: "rgba(255,255,255,0.25)",
+          transform: "s"+ 0 + "," + 0 + ","+ bbox.cx + "," +  bbox.cy
+        });
+
+        setTimeout(()=>{
+          el.animate({ transform: "s1,1," + bbox.cx + "," + bbox.cy }, 1000, function (n) {
+            if (n == !!n) {
+              return n;
+            }
+            return Math.pow(2, -10 * n) * Math.sin((n - .075) *
+                (2 * Math.PI) / .3) + 1;
+          });
+        }, 50*index);
+
+      });
+
+      s.append(data);
+    });
+
+
 
   }
 
   scrollEvent(e: Event){
 
-    let getScrollAmount: Function = function(){
+    let getScrollAmount: Function = () => {
       return (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
     };
 
-    clearTimeout(this.scrollTimeout);
-    this.scrollTimeout = setTimeout(()=>{
-      //console.log(getScrollAmount());
-      if (typeof this.iconWrapper === "undefined") this.iconWrapper = document.querySelector("div#front-icons");
-      this.iconWrapper.setAttribute("style", "transform: translateY(" + getScrollAmount()/15 + "%)");
-    }, 5);
+    document.getElementById("svgWrapper").setAttribute("style", "transform: translateY(" + getScrollAmount()/15 + "%)");
 
   }
 
   scrollDown(e: Event) {
 
     let section = document.querySelector("section.front");
-    //window.scrollTo(0, section.clientHeight);
-    //section.scrollIntoView({block: 'end', behavior: 'smooth'});
-
     let scrollPos  = window.pageYOffset || document.documentElement.scrollTop;
-
     this.scrollToEvent(scrollPos, section.clientHeight, 400);
 
   }
@@ -85,104 +116,14 @@ export class AppComponent implements OnInit {
     }, 10);
   }
 
-  iconAnimation(){
-
-      let widthRatio = window.innerWidth / 992;
-      console.log(widthRatio);
-
-      window.clearInterval(this.iconInterval);
-      this.iconInterval = window.setInterval(() => { this.createIcon(this.iconWrapper) }, ~~(500 / widthRatio));
-  }
-
-  /*
-   * @param elem where you want icon to be created
-   */
-  createIcon(elem){
-
-    // icons array
-    let icons: Array<string> = [
-      'fa-database',
-      'fa-cube',
-      'fa-commenting',
-      'fa-github',
-      'fa-html5',
-      'fa-css3',
-      'fa-wordpress',
-      'fa-folder-open',
-      'fa-tablet'
-    ];
-
-    let checkAnimationEndEvent: Function = function() {
-      let a;
-      let elem = document.createElement("fakeelement");
-      let animations = {
-        'animation': 'animationend',
-        'webkitAnimation': 'webkitAnimationEnd'
-      };
-
-      for (a in animations) {
-        if (elem.style[a] !== undefined) {
-          return animations[a];
-        }
-      }
-
-      return null;
-
-    };
-
-    let deleteElem: Function = function(elem) {
-      elem.parentNode.removeChild(elem);
-    };
-
-    let curIcon = icons[Math.round(Math.random()*(icons.length-1))];
-    let iconNumber = Math.round(Math.random()*8+1);
-    // create new element and add needed classes etc
-    let newIcon = document.createElement("i");
-    newIcon.classList.add("rand-icon");
-    newIcon.classList.add("fa");
-    newIcon.classList.add(curIcon);
-    newIcon.classList.add("icon-size-" + iconNumber);
-    newIcon.style.left = Math.random()*100 + "%";
-    //newIcon.randAmount = Math.random();
-    elem.appendChild(newIcon);
-    //console.log("created");
-
-    let animEvent = checkAnimationEndEvent();
-
-    if (animEvent) {
-
-      newIcon.addEventListener(animEvent, function(){
-        deleteElem(newIcon);
-        //console.log("removed with animationend");
-      });
-
-    } else {
-
-      setTimeout(function(){
-        elem.removeChild(newIcon);
-        //console.log("removed with setTimeout");
-      }, 20000/iconNumber);
-
-    }
-
-  }
-
   addVisibilityChange(){
     // is tab active
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) {
         document.title = "Activate me!";
-        window.clearInterval(this.iconInterval);
       } else {
         document.title = "Pspf";
-        this.iconAnimation();
       }
-    });
-  }
-
-  addWindowWidthListener(){
-    window.addEventListener("resize", ()=>{
-      this.iconAnimation();
     });
   }
 

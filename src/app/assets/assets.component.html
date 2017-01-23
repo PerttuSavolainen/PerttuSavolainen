@@ -3,10 +3,11 @@
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--4dp" *ngFor="let item of assetItems">
     <div class="mdl-card__media">
-      <img *ngIf="item.image != null" [src]="item.image" alt="" style="max-width: 100%;">
-      <div *ngIf="item.canvas != null" style="height: 500px; width: 100%; position: relative; overflow: hidden; ">
+      <img *ngIf="item.type == 'image'" [src]="item.image" alt="" style="max-width: 100%;">
+      <div *ngIf="item.type == 'canvas'" style="height: 500px; width: 100%; position: relative; overflow: hidden; ">
         <canvas [id]="item.canvas.canvasId" width="960" height="960" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-height: 100%;"></canvas>
       </div>
+      <div *ngIf="item.type == 'svg'" [id]="item.wrapperId" class="svg-wrapper">{{ item.code(item.wrapperId, item.image) }}</div>
     </div>
     <div class="mdl-card__title">
       <h3>

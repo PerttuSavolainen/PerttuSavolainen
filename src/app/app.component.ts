@@ -76,6 +76,25 @@ export class AppComponent implements OnInit {
           });
         }, 50*index);
 
+        el.hover(() => {
+          el.animate({ transform: "s0.75,0.75," + bbox.cx + "," + bbox.cy }, 1000, function (n) {
+            if (n == !!n) {
+              return n;
+            }
+            return Math.pow(2, -10 * n) * Math.sin((n - .075) *
+                (2 * Math.PI) / .3) + 1;
+          }, () => {
+            el.animate({transform: "s1,1," + bbox.cx + "," + bbox.cy}, 1000, function (n) {
+              if (n == !!n) {
+                return n;
+              }
+              return Math.pow(2, -10 * n) * Math.sin((n - .075) *
+                  (2 * Math.PI) / .3) + 1;
+            });
+          });
+        });
+
+
       });
 
       s.append(data);

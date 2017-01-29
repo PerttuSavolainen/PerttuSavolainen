@@ -10,6 +10,7 @@ import {hypeItem} from "../interfaces";
 export class WhoComponent implements OnInit {
 
   public hypes: hypeItem[];
+  public wantToLearn: hypeItem[];
 
   constructor() { }
 
@@ -40,9 +41,16 @@ export class WhoComponent implements OnInit {
         info: "Tool for automating and enhancing your workflow.",
         link: "http://gulpjs.com/"
       }
-
-
     ];
+
+    this.wantToLearn = [
+      {
+        title: "Electron",
+        info: "Cross platform apps with web technologies.",
+        link: "http://electron.atom.io/"
+      },
+    ];
+
   }
 
 }

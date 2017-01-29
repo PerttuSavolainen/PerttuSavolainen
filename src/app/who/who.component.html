@@ -18,7 +18,7 @@
       </a>
     </div>
   </div>
-  <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--4dp">
+  <div class="mdl-cell mdl-card mdl-shadow--4dp">
 
     <div class="mdl-card__media" style="background-image: url('assets/lightbulb.jpg'); background-size: cover; min-height: 150px;">
       <!--<img src="assets/lightbulb.jpg" alt="" style="max-width: 100%">-->
@@ -31,6 +31,30 @@
 
     <ul class="mdl-list mdl-card--border">
       <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let hype of hypes">
+        <span class="mdl-list__item-primary-content">
+          <a href="{{hype.link}}">
+            <i class="material-icons mdl-list__item-icon">launch</i>
+          </a>
+          <span>{{ hype.title }}</span>
+          <span class="mdl-list__item-sub-title">{{hype.info}}</span>
+        </span>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="mdl-cell mdl-card mdl-shadow--4dp">
+
+    <div class="mdl-card__media" style="background-image: url('assets/code.jpg'); background-size: cover; min-height: 150px;">
+    </div>
+    <div class="mdl-card__title">
+      <h3>
+        Want to try out
+      </h3>
+    </div>
+
+    <ul class="mdl-list mdl-card--border">
+      <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let hype of wantToLearn">
         <span class="mdl-list__item-primary-content">
           <a href="{{hype.link}}">
             <i class="material-icons mdl-list__item-icon">launch</i>

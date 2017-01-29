@@ -28,31 +28,16 @@ export class AppComponent implements OnInit {
     // TODO sniff if user is using mobile device, otherwise apply scroll event
     if (window.innerWidth >= 992) window.addEventListener('scroll', this.scrollEvent);
 
-    // animate characters on at a time
-    /*let logoSpans = document.querySelectorAll(".logo-wrapper h1 span:not(.name)");
-    setTimeout(() => {
-      for (let i=0; i<logoSpans.length; i++) {
-        setTimeout(() => {
-          logoSpans[i].classList.add("manual-hover");
-          setTimeout(() => {
-            logoSpans[i].classList.remove("manual-hover");
-          }, (i+1)*50);
-        }, i*100);
-      }
-
-      this.addVisibilityChange();
-
-    }, 2000);*/
-
     this.addVisibilityChange();
 
     let s = Snap("#svgWrapper");
     console.log(s);
 
     // load svg dynamically
-    let l = Snap.load('assets/lightbulb.svg', (data) => {
-      //console.log(data);
+    Snap.load('assets/lightbulb.svg', (data) => {
+      console.log(data);
 
+      let nestedSvg = data.select('svg');
       let svgPaths = data.selectAll('path');
       //console.log(svgPaths);
       svgPaths.forEach( (el, index) => {
@@ -61,45 +46,36 @@ export class AppComponent implements OnInit {
         let bbox = el.getBBox();
 
         el.attr({
-          //opacity: 0.2,
-          fill: "rgba(255,255,255,0.25)",
+          opacity: 0.15,
+          //fill: "rgba(255,255,255,0.25)",
+          fill: "#fff",
           transform: "s"+ 0 + "," + 0 + ","+ bbox.cx + "," +  bbox.cy
         });
 
         setTimeout(()=>{
-          el.animate({ transform: "s1,1," + bbox.cx + "," + bbox.cy }, 1000, function (n) {
-            if (n == !!n) {
-              return n;
-            }
-            return Math.pow(2, -10 * n) * Math.sin((n - .075) *
-                (2 * Math.PI) / .3) + 1;
+          el.animate({ transform: "s1,1," + bbox.cx + "," + bbox.cy }, 1000, (n) => {
+            if (n == !!n) return n;
+            return Math.pow(2, -10 * n) * Math.sin((n - .075) * (2 * Math.PI) / .3) + 1;
           });
         }, 50*index);
 
         el.hover(() => {
-          el.animate({ transform: "s0.75,0.75," + bbox.cx + "," + bbox.cy }, 1000, function (n) {
-            if (n == !!n) {
-              return n;
-            }
-            return Math.pow(2, -10 * n) * Math.sin((n - .075) *
-                (2 * Math.PI) / .3) + 1;
+          el.animate({ transform: "s0.75,0.75," + bbox.cx + "," + bbox.cy }, 1000, (n) => {
+            if (n == !!n) return n;
+            return Math.pow(2, -10 * n) * Math.sin((n - .075) * (2 * Math.PI) / .3) + 1;
           }, () => {
-            el.animate({transform: "s1,1," + bbox.cx + "," + bbox.cy}, 1000, function (n) {
-              if (n == !!n) {
-                return n;
-              }
-              return Math.pow(2, -10 * n) * Math.sin((n - .075) *
-                  (2 * Math.PI) / .3) + 1;
+            el.animate({transform: "s1,1," + bbox.cx + "," + bbox.cy}, 1000, (n) => {
+              if (n == !!n) return n;
+              return Math.pow(2, -10 * n) * Math.sin((n - .075) * (2 * Math.PI) / .3) + 1;
             });
           });
         });
 
-
       });
 
       s.append(data);
-    });
 
+    });
 
 
   }
@@ -139,7 +115,7 @@ export class AppComponent implements OnInit {
     // is tab active
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) {
-        document.title = "Activate me!";
+        document.title = "Please don't leave...";
       } else {
         document.title = "Pspf";
       }

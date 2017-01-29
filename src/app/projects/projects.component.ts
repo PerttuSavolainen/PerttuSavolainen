@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef, Renderer} from '@angular/core';
 import {portfolioItem} from "../interfaces";
 
 @Component({
@@ -10,10 +10,15 @@ export class ProjectsComponent implements OnInit {
 
   projectItems: portfolioItem[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.projectItems = [
+      {
+        title: "Energy consumption project (WIP)",
+        info: "Third semester's School project for a real client. A research of visualizing and finding anomalies from energy consumption data. We use Design Sprints to validate a good user interface and Machine Learning principles to find anomalies.",
+        image: "assets/dunno.jpg"
+      },
       {
         title: "NFSea",
         info: "Third semester's School project. A research about NFC in Android environment. Contained also a little message sending demo via NFC.",
@@ -23,7 +28,7 @@ export class ProjectsComponent implements OnInit {
       {
         title: "Pics",
         info: "Second semester's School project. Fictional image service, where users can send and comment images. Project introduced me to a Laravel framework.",
-        image: "assets/pics.PNG"
+        image: "assets/pics.jpg"
       },
       {
         title: "Lemon Ways - TED",
@@ -33,7 +38,7 @@ export class ProjectsComponent implements OnInit {
       {
         title: "Need For Music",
         info: "First semester's School project. Html5 web application of music trivia and entertainment.",
-        image: "assets/nfm.png"
+        image: "assets/nfm.jpg"
       }
 
     ];

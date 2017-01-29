@@ -15,9 +15,15 @@ export class WebpagesComponent implements OnInit {
   ngOnInit() {
     this.webpageItems = [
       {
+        title: "Portfolio",
+        info: "Portfolio site for a client. Made with WordPress and Fullpage.js -library. Site's artwork is from a client.",
+        image: "assets/r2graphics.jpg",
+        link: "http://r2graphics.fi/"
+      },
+      {
         title: "A gaming event",
         info: "Our cooperative society organized a gaming event.",
-        image: "assets/powerlan.PNG",
+        image: "assets/powerlan.jpg",
         link: "http://powerlan.fi/"
       },
       {
@@ -29,7 +35,7 @@ export class WebpagesComponent implements OnInit {
       {
         title: "Web page for a client",
         info: "A static webpage for a client. Made using Bootstrap.",
-        image: "assets/taapero.png"
+        image: "assets/taapero.jpg"
       }
     ];
 

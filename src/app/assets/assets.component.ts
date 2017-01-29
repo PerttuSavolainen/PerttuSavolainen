@@ -58,7 +58,9 @@ export class AssetsComponent implements OnInit {
                   });
                 }, 50*index);
 
-                el.hover(() => {
+
+
+               el.hover(() => {
                   el.animate({ transform: "s0.75,0.75," + bbox.cx + "," + bbox.cy }, 1000, function (n) {
                     if (n == !!n) {
                       return n;

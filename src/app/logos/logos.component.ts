@@ -16,17 +16,17 @@ export class LogosComponent implements OnInit {
     this.logoItems = [
       {
         title: "Streamgull",
-        info: "Logo for a school project.",
+        info: "Logo kouluprojektiin.",
         image: "assets/sg-logo-drop-shadow.png"
       },
       {
         title: "Pics",
-        info: "Logo for a school project.",
+        info: "Logo kouluprojektiin.",
         image: "assets/pics-logo.jpg"
       },
       {
         title: "DynamIT",
-        info: "Cooperative society's logo.",
+        info: "Osuuskunnan logo.",
         image: "assets/dynamit-logo.png"
       },
 

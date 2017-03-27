@@ -1,70 +1,79 @@
+
+
 <div class="mdl-grid">
-  <div class="mdl-cell mdl-card mdl-shadow--4dp">
+
+  <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-card mdl-shadow--4dp">
     <div class="mdl-card__media">
-      <img src="assets/me.jpg"  border="0" alt="" style="max-width: 100%">
+      <img src="assets/me.jpg"  border="0" alt="" style="width: 100%">
     </div>
     <div class="mdl-card__title">
       <h3>
-        Who?
+        Kuka?
       </h3>
     </div>
     <div class="mdl-card__supporting-text mdl-card--border">
-      Hi, I'm Perttu Savolainen, a media engineering student from Jyväskylä.
-      I'm currently striving to learn newest and most used techonologies and trends (like Ionic 2 and Angular 2) from web environment. Here's my portfolio, made with Angular 2 and Material Design Lite.
+      Moi, olen Perttu Savolainen, mediatekniikan insinööriopiskelija Jyväskylästä.
+      Haluan oppia käytetyimmät ja kuumimmat tekniikat web-ympäristössä.
+      Tässä portfolioni, tehty Angular 2:lla ja Material Design Litellä.
     </div>
     <div class="mdl-card__actions mdl-card--border">
       <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://github.com/PerttuSavolainen" target="_blank">
-        Check my GitHub page
+        GitHub-sivu
       </a>
     </div>
   </div>
-  <div class="mdl-cell mdl-card mdl-shadow--4dp">
 
-    <div class="mdl-card__media" style="background-image: url('assets/lightbulb.jpg'); background-size: cover; min-height: 150px;">
-      <!--<img src="assets/lightbulb.jpg" alt="" style="max-width: 100%">-->
-    </div>
-    <div class="mdl-card__title">
-      <h3>
-        Currently hyped about
-      </h3>
-    </div>
+  <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-card mdl-shadow--4dp" style="color: black;">
 
-    <ul class="mdl-list mdl-card--border">
-      <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let hype of hypes">
-        <span class="mdl-list__item-primary-content">
-          <a href="{{hype.link}}">
-            <i class="material-icons mdl-list__item-icon">launch</i>
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#perks-panel" class="mdl-tabs__tab is-active">Osaaminen</a>
+        <a href="#github-panel" class="mdl-tabs__tab">Github-tapahtumat</a>
+      </div>
+
+      <div class="mdl-tabs__panel is-active" id="perks-panel">
+        <div class="tab-wrapper" style="">
+
+          <h3 class="own-icon"><i class="fa fa-wpexplorer" aria-hidden="true"></i></h3>
+          <p>Web-ympäristössä on tullut pyörittyä Front- ja Backendin molemmilla puolin. Tässä muutamia mainitsemisen arvoisia tekniikoita joihin on tullut tutustuttua matkan varrella.</p>
+          <span class="" *ngFor="let perk of perks">
+            <span class="mdl-chip mdl-chip--contact" *ngFor="let item of perk.perkItems" style="margin: 5px">
+              <span [ngSwitch]="perk.name">
+                <span *ngSwitchCase="'Frontend'" class="mdl-chip__contact mdl-color--teal mdl-color-text--white">F</span>
+                <span *ngSwitchCase="'Backend'"  class="mdl-chip__contact mdl-color--teal mdl-color-text--white">B</span>
+                <span *ngSwitchDefault class="mdl-chip__contact mdl-color--teal mdl-color-text--white">O</span>
+              </span>
+              <span class="mdl-chip__text">{{ item }}</span>
+            </span>
+          </span>
+
+        </div>
+      </div>
+
+      <div class="mdl-tabs__panel" id="github-panel">
+        <div class="tab-wrapper">
+
+          <a [href]="user?.html_url">
+            <img class="gh-image" *ngIf="user?.avatar_url" [src]="user?.avatar_url" style="border-radius: 50%; background: #eee;">
           </a>
-          <span>{{ hype.title }}</span>
-          <span class="mdl-list__item-sub-title">{{hype.info}}</span>
-        </span>
-      </li>
-    </ul>
+
+          <h4>Viimeisimmät julkiset repot</h4>
+          <ul style="list-style: none">
+            <li *ngFor="let repo of getRepos()">
+              <h5><a [href]="repo.url" target="_blank" style="text-decoration: none;">{{ repo.name }}</a></h5>
+              <!--<p *ngIf="repo.description">{{repo.description}}</p>-->
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+
+    </div>
 
   </div>
 
-  <div class="mdl-cell mdl-card mdl-shadow--4dp">
 
-    <div class="mdl-card__media" style="background-image: url('assets/code.jpg'); background-size: cover; min-height: 150px;">
-    </div>
-    <div class="mdl-card__title">
-      <h3>
-        Want to try out
-      </h3>
-    </div>
 
-    <ul class="mdl-list mdl-card--border">
-      <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let hype of wantToLearn">
-        <span class="mdl-list__item-primary-content">
-          <a href="{{hype.link}}">
-            <i class="material-icons mdl-list__item-icon">launch</i>
-          </a>
-          <span>{{ hype.title }}</span>
-          <span class="mdl-list__item-sub-title">{{hype.info}}</span>
-        </span>
-      </li>
-    </ul>
-
-  </div>
 
 </div>

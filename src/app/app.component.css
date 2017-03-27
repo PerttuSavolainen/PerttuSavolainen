@@ -77,6 +77,7 @@
 
 .navi {
   text-align: center;
+  border-bottom: rgba(255,255,255, 0.2) solid 1px;
 }
 
 .navi a {
@@ -127,7 +128,7 @@
 }
 
 .footer {
-  background: #e84f4f;
+  border-top: rgba(255,255,255, 0.2) solid 1px;
   color: #fff;
   text-align: center;
   padding: 2rem;

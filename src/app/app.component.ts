@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {setTimeout} from "timers";
 //import * as d3 from "d3";
 //import {scaleLinear} from "d3-scale";
 
 declare var Snap: any;
+declare var componentHandler: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewChecked {
 
   scrollTimeout: any;
  // iconWrapper: Element;
@@ -80,6 +81,10 @@ export class AppComponent implements OnInit {
 
   }
 
+  ngAfterViewChecked() {
+    componentHandler.upgradeAllRegistered();
+  }
+
   scrollEvent(e: Event){
 
     let getScrollAmount: Function = () => {
@@ -115,9 +120,9 @@ export class AppComponent implements OnInit {
     // is tab active
     document.addEventListener('visibilitychange', function(){
       if (document.hidden) {
-        document.title = "Please don't leave...";
+        document.title = "Hei, älä karkaa!";
       } else {
-        document.title = "Pspf";
+        document.title = "Potfolio | Perttu Savolainen";
       }
     });
   }

@@ -12,13 +12,14 @@ import {WebpagesComponent} from "./webpages/webpages.component";
 
 import {ProjectsComponent} from "./projects/projects.component";
 import {WhoComponent} from "./who/who.component";
+import {DataService} from "./data.service";
 
 const appRoutes: Routes = [
   //{ path: 'hero/:id', component: HeroDetailComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'webpages', component: WebpagesComponent },
-  { path: 'logos', component: LogosComponent },
-  { path: 'assets', component: AssetsComponent },
+  { path: 'projektit', component: ProjectsComponent },
+  { path: 'websivut', component: WebpagesComponent },
+  { path: 'logot', component: LogosComponent },
+  { path: 'sekalaista', component: AssetsComponent },
   { path: '', component: WhoComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -39,7 +40,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

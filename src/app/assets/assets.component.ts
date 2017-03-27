@@ -19,14 +19,61 @@ export class AssetsComponent implements OnInit {
     this.assetItems = [
       {
         type: "svg",
-        title: "Icon collage - lightbulb",
-        info: "Random svg with Adobe Illustrator, animated with snap.svg JavaScript library.",
-        image: "assets/lightbulb.svg",
-        wrapperId: "lightbulbWrapper",
-        code: (wrapperId: string, imageUrl: string) => {
+        title: "Hummingbird",
+        info: "Lisää svg-animointia snap.svg:llä. Svg tehty Adobe Illustratorilla.",
+        image: "assets/hummingbird.svg",
+        wrapperId: "hummingbirdWrapper",
+        code: (wrapperId: string, imageUrl: string, animationOffset: number = 0) => {
 
           if (this.assetLoaded === false) {
 
+            //this.assetLoaded = true;
+
+            let s = Snap("#" + wrapperId);
+
+            // load svg dynamically
+            let l = Snap.load(imageUrl, (data) => {
+              //console.log(data);
+
+              let svgCircles = data.selectAll('circle, path, ellipse');
+              //console.log(svgPaths);
+              svgCircles.forEach( (el, index) => {
+
+                // bouncing box
+                let bbox = el.getBBox();
+
+                el.attr({
+                  transform: "s"+ 0 + "," + 0 + ","+ bbox.cx + "," +  bbox.cy
+                });
+
+                setTimeout(()=>{
+                  el.animate({ transform: "s1,1," + bbox.cx + "," + bbox.cy }, 500, function (n) {
+                    if (n == !!n) {
+                      return n;
+                    }
+                    return Math.pow(2, -10 * n) * Math.sin((n - .075) *
+                        (2 * Math.PI) / .3) + 1;
+                  });
+                }, animationOffset);
+
+              });
+
+              s.append(data);
+            });
+          }
+        }
+      },
+      {
+        type: "svg",
+        title: "Lightbulb",
+        info: "Adobe Illustratorilla tehty svg, animoitu snap.svg:llä.",
+        image: "assets/lightbulb.svg",
+        wrapperId: "lightbulbWrapper",
+        code: (wrapperId: string, imageUrl: string, animationOffset: number = 0) => {
+
+          if (this.assetLoaded === false) {
+
+            // TODO find something different solution to prevent appending multiple times
             this.assetLoaded = true;
 
             let s = Snap("#" + wrapperId);
@@ -36,15 +83,13 @@ export class AssetsComponent implements OnInit {
               console.log(data);
 
               let svgPaths = data.selectAll('path');
-              //console.log(svgPaths);
+
               svgPaths.forEach( (el, index) => {
 
                 // bouncing box
                 let bbox = el.getBBox();
 
                 el.attr({
-                  //opacity: 0.2,
-                  //fill: "rgba(255,255,255,0.25)",
                   transform: "s"+ 0 + "," + 0 + ","+ bbox.cx + "," +  bbox.cy
                 });
 
@@ -56,7 +101,7 @@ export class AssetsComponent implements OnInit {
                     return Math.pow(2, -10 * n) * Math.sin((n - .075) *
                         (2 * Math.PI) / .3) + 1;
                   });
-                }, 50*index);
+                }, 50*index*animationOffset);
 
 
 
@@ -89,14 +134,14 @@ export class AssetsComponent implements OnInit {
       },
       {
         type: "image",
-        title: "Streamgull background",
-        info: "Ionic 2 project asset.",
+        title: "Streamgull taustakuva",
+        info: "Ionic 2 -projektin grafiikkaa.",
         image: "assets/sg-bg-1280.jpg"
       },
       {
         type: "canvas",
-        title: "Random JavaScript asset",
-        info: "Just something with canvas.",
+        title: "JavaScript-testausta",
+        info: " Jotain pientä canvasilla.",
         canvas: {
           src: "assets/canvasTriangles.js",
           canvasId: "canvasTriangles"

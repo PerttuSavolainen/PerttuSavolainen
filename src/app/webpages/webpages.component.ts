@@ -16,25 +16,25 @@ export class WebpagesComponent implements OnInit {
     this.webpageItems = [
       {
         title: "Portfolio",
-        info: "Portfolio site for a client. Made with WordPress and Fullpage.js -library. Site's artwork is from a client.",
+        info: "Portfoliosivut asiakkaalle. Toteuttiin WordPressillä ja Fullpage.js -kirjastoa hyödyntäen. Sivun grafiikka on asiakkaalta.",
         image: "assets/r2graphics.jpg",
         link: "http://r2graphics.fi/"
       },
       {
-        title: "A gaming event",
-        info: "Our cooperative society organized a gaming event.",
+        title: "Pelitapahtuma",
+        info: "Osuuskuntamme järjesti pelitapahtuman, joka tarvitsi verkkosivut.",
         image: "assets/powerlan.jpg",
         link: "http://powerlan.fi/"
       },
       {
-        title: "'An inside job'",
-        info: "Our cooperative society needed a web page.",
+        title: "DynamIT-sivut",
+        info: "Osuuskuntamme tarvitsi verkkosivut.",
         image: "assets/DynamIT.jpg",
         link: "http://dynamit.fi/"
       },
       {
-        title: "Web page for a client",
-        info: "A static webpage for a client. Made using Bootstrap.",
+        title: "Verkkosivut asiakkaalle",
+        info: "Staattiset verkkosivut asiakkaalle. Toteutettu Bootstrapillä.",
         image: "assets/taapero.jpg"
       }
     ];
